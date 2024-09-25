@@ -1,10 +1,12 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import './index.css'
-
+import ApiContextProvider from './contexts/ApiContextProvider.jsx'
+import ServiceRegister from './service/ServiceRegister.js'
+import { CookiesProvider } from 'react-cookie'
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+    <ApiContextProvider value={ServiceRegister()}>
+        <CookiesProvider defaultSetOptions={{path:"/"}}>
+            <App />
+        </CookiesProvider>
+    </ApiContextProvider>
 )
